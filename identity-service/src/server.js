@@ -3,6 +3,7 @@ const helmet = require('helmet')
 const mongoose = require('mongoose')
 const logger = require('./utils/Logger')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 const {RateLimiterRedis} = require('rate-limiter-flexible')
 const Redis = require('ioredis')
@@ -27,7 +28,11 @@ const redisClient = new Redis(process.env.REDIS_URL)
 // Middleware
 app.use(helmet())
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    credentials: true // Allow cookies to be sent
+}))
+app.use(cookieParser())
 
 app.use((req, res, next)=>{
     logger.info(`Recieved ${req.method} request for ${req.url}`)

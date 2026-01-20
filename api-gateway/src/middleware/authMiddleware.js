@@ -2,32 +2,24 @@ const logger = require('../utils/logger')
 const jwt = require('jsonwebtoken')
 
 const validateToken = (req, res, next) => {
-
-    const authHeader = req.headers['authorization']
-    if (!authHeader) {
-        logger.warn('No Authorization header present')
-        return res.status(401).json({
-            success: false,
-            message: 'Authorization header missing'
-        })
-    }
-
-    const token = authHeader.split(' ')[1]
+    // Extract token from cookies
+    const token = req.cookies.accessToken
+    
     if (!token) {
-        logger.warn('No token provided in Authorization header')
+        logger.warn('No access token found in cookies')
         return res.status(401).json({
             success: false,
-            message: 'Token missing from Authorization header'
+            message: 'Access token missing. Please login.'
         })
     }
 
-    // Here you would normally validate the token (e.g., JWT verification)
-   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    // Verify the JWT token
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
             logger.warn('Invalid token: %s', err.message)
             return res.status(403).json({
                 success: false,
-                message: 'Invalid or expired token'
+                message: 'Invalid or expired token. Please refresh or login again.'
             })
         }
         req.user = user

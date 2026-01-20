@@ -4,6 +4,7 @@ require('dotenv').config()
 const Redis = require('ioredis')
 const logger = require('./utils/logger')
 const helmet = require('helmet')
+const cookieParser = require('cookie-parser')
 const { rateLimit } = require('express-rate-limit')
 const { RedisStore } = require('rate-limit-redis')
 const proxy = require('express-http-proxy')
@@ -15,8 +16,12 @@ const redisClient = new Redis(process.env.REDIS_URL)
 
 // Middleware
 app.use(helmet())
-app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    credentials: true // Allow cookies to be sent
+}))
 app.use(express.json())
+app.use(cookieParser())
 
 
 // Request loggers
@@ -64,12 +69,20 @@ if (!process.env.IDENTITY_SERVICE_URL) {
 } else {
     app.use('/v1/auth', proxy(process.env.IDENTITY_SERVICE_URL, {
         ...proxyOptions,
-        proxyReqOptDecorator: (proxyReqOpts) => {
+        proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             proxyReqOpts.headers['content-type'] = 'application/json'
+            // Forward cookies to identity service
+            if (srcReq.headers.cookie) {
+                proxyReqOpts.headers['cookie'] = srcReq.headers.cookie
+            }
             return proxyReqOpts
         },
-        userResDecorator: (proxyRes, proxyResData, userReq) => {
+        userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
             logger.info('Identity-service responded %d for %s', proxyRes.statusCode, userReq.originalUrl)
+            // Forward set-cookie headers from identity service to client
+            if (proxyRes.headers['set-cookie']) {
+                userRes.setHeader('set-cookie', proxyRes.headers['set-cookie'])
+            }
             return proxyResData
         }
     }))

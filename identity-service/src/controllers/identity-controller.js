@@ -35,12 +35,29 @@ const registerUser = async (req, res, next) => {
         await user.save()
         logger.warn("New user registered: %s", user._id)
         const { accessToken, refreshToken } = await generateTokens(user)
+        
+        // Set tokens in httpOnly cookies
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 15 * 60 * 1000 // 15 minutes
+        })
+        
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+        })
+        
         return res.status(201).json({
             success: true,
             message: "User registered successfully",
             data: {
-                accessToken,
-                refreshToken
+                userId: user._id,
+                username: user.username,
+                email: user.email
             }
         })
     } catch (error) {
@@ -89,12 +106,29 @@ const loginUser = async (req, res, next) => {
         }
         //if the password matches
         const {accessToken, refreshToken} = await generateTokens(user)
+        
+        // Set tokens in httpOnly cookies
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 15 * 60 * 1000 // 15 minutes
+        })
+        
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+        })
+        
         return res.status(200).json({
             success: true,
             message: "Login successful",
             data: {
-                accessToken,
-                refreshToken
+                userId: user._id,
+                username: user.username,
+                email: user.email
             }
         })
 
@@ -110,13 +144,13 @@ const loginUser = async (req, res, next) => {
 const refreshTokenUser = async (req, res, next) => {
     try {
         logger.info("Hit refreshTokenUser endpoint")
-    //implementation pending
-    const {refreshToken} = req.body
+    // Read refresh token from cookies
+    const refreshToken = req.cookies.refreshToken
     if (!refreshToken){
-        logger.warn("Refresh token not provided in request")
-        return res.status(400).json({
+        logger.warn("Refresh token not provided in cookies")
+        return res.status(401).json({
             success: false,
-            message: "Refresh token is required"
+            message: "Refresh token is required. Please login again."
         })
     }
     //further implementation needed
@@ -148,13 +182,25 @@ const refreshTokenUser = async (req, res, next) => {
     const {accessToken:newAccessToken, refreshToken: newRefreshToken} = await generateTokens(user)
     //delete old refresh token
     await RefreshToken.deleteOne({_id: storedToken._id})
+    
+    // Set new tokens in httpOnly cookies
+    res.cookie('accessToken', newAccessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000 // 15 minutes
+    })
+    
+    res.cookie('refreshToken', newRefreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    })
+    
     return res.status(200).json({
         success: true,
-        message: "Tokens refreshed successfully",
-        data: {
-            accessToken: newAccessToken,
-            refreshToken: newRefreshToken
-        }
+        message: "Tokens refreshed successfully"
     })
 
 
@@ -170,10 +216,9 @@ const refreshTokenUser = async (req, res, next) => {
 //logout
 
 const logoutUser = async (req, res, next) => {
-    //implementation pending
     logger.info("Hit logoutUser endpoint")
     try {
-        const {refreshToken} = req.body
+        const refreshToken = req.cookies.refreshToken
     if (!refreshToken){
         logger.warn("Refresh token not provided in logout request")
         return res.status(400).json({
@@ -182,6 +227,20 @@ const logoutUser = async (req, res, next) => {
         })
     }
     await RefreshToken.deleteOne({token: refreshToken})
+    
+    // Clear cookies
+    res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    })
+    
+    res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    })
+    
     logger.info("User logged out successfully, refresh token invalidated: %s", refreshToken)
     return res.status(200).json({
         success: true,
