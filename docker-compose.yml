@@ -81,12 +81,15 @@ services:
       NODE_ENV: development
       PORT: 3001
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
+      REDIS_URL: redis://redis:6379
       JWT_SECRET: your-secret-key-change-in-production
       JWT_REFRESH_SECRET: your-refresh-secret-key-change-in-production
       JWT_EXPIRY: 15m
       JWT_REFRESH_EXPIRY: 7d
     depends_on:
       mongo:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - nexusfeed-network
