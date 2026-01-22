@@ -82,6 +82,7 @@ services:
       PORT: 3001
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
       REDIS_URL: redis://redis:6379
+      CLIENT_URL: http://localhost:3005
       JWT_SECRET: your-secret-key-change-in-production
       JWT_REFRESH_SECRET: your-refresh-secret-key-change-in-production
       JWT_EXPIRY: 15m
@@ -221,6 +222,7 @@ services:
       MEDIA_SERVICE_URL: http://media-service:3003
       SEARCH_SERVICE_URL: http://search-service:3004
       JWT_SECRET: your-secret-key-change-in-production
+      CLIENT_URL: http://localhost:3005
       RATE_LIMIT_WINDOW_MS: 900000
       RATE_LIMIT_MAX_REQUESTS: 100
     depends_on:
@@ -242,6 +244,25 @@ services:
       timeout: 10s
       start_period: 10s
       retries: 3
+    restart: unless-stopped
+
+  # Next.js UI: Frontend application (Port 3005)
+  ui:
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+    container_name: nexusfeed-ui
+    ports:
+      - "3005:3005"
+    environment:
+      NODE_ENV: production
+      PORT: 3005
+      NEXT_PUBLIC_API_URL: http://localhost:3000
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+    networks:
+      - nexusfeed-network
     restart: unless-stopped
 
 # ========================

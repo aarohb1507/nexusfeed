@@ -37,17 +37,20 @@ const registerUser = async (req, res, next) => {
         const { accessToken, refreshToken } = await generateTokens(user)
         
         // Set tokens in httpOnly cookies
+        // Use 'lax' for development (cross-port), 'strict' for production (same domain)
+        const sameSitePolicy = process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
+        
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: sameSitePolicy,
             maxAge: 15 * 60 * 1000 // 15 minutes
         })
         
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: sameSitePolicy,
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         })
         
@@ -108,17 +111,20 @@ const loginUser = async (req, res, next) => {
         const {accessToken, refreshToken} = await generateTokens(user)
         
         // Set tokens in httpOnly cookies
+        // Use 'lax' for development (cross-port), 'strict' for production (same domain)
+        const sameSitePolicy = process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
+        
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: sameSitePolicy,
             maxAge: 15 * 60 * 1000 // 15 minutes
         })
         
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: sameSitePolicy,
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         })
         
@@ -184,17 +190,20 @@ const refreshTokenUser = async (req, res, next) => {
     await RefreshToken.deleteOne({_id: storedToken._id})
     
     // Set new tokens in httpOnly cookies
+    // Use 'lax' for development (cross-port), 'strict' for production (same domain)
+    const sameSitePolicy = process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
+    
     res.cookie('accessToken', newAccessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: sameSitePolicy,
         maxAge: 15 * 60 * 1000 // 15 minutes
     })
     
     res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: sameSitePolicy,
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     })
     
@@ -228,17 +237,19 @@ const logoutUser = async (req, res, next) => {
     }
     await RefreshToken.deleteOne({token: refreshToken})
     
-    // Clear cookies
+    // Clear cookies - must use same sameSite policy as when setting
+    const sameSitePolicy = process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
+    
     res.clearCookie('accessToken', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
+        sameSite: sameSitePolicy
     })
     
     res.clearCookie('refreshToken', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
+        sameSite: sameSitePolicy
     })
     
     logger.info("User logged out successfully, refresh token invalidated: %s", refreshToken)

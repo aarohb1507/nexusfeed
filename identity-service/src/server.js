@@ -29,7 +29,7 @@ const redisClient = new Redis(process.env.REDIS_URL)
 app.use(helmet())
 app.use(express.json())
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: process.env.CLIENT_URL || 'http://localhost:3005',
     credentials: true // Allow cookies to be sent
 }))
 app.use(cookieParser())
@@ -44,7 +44,7 @@ app.use((req, res, next)=>{
 const rateLimiter = new RateLimiterRedis({
     storeClient: redisClient,
     keyPrefix: 'middleware',
-    points: 100, // Number of points
+    points: 400, // Increased 4x from 100
     duration: 15 * 60, // Per 15 minutes
 })
 
@@ -64,7 +64,7 @@ app.use((req, res, next)=>{
 
 const rateLimiterMiddleware = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 30, // limit each IP to 20 requests per windowMs
+    max: 120, // Increased 4x from 30
     standardHeaders: true,
     legacyHeaders: false,   
     handler : (req, res)=>{

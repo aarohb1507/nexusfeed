@@ -129,3 +129,266 @@
 {"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2025-12-26T20:53:01.503Z"}
 {"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2025-12-26T20:53:01.504Z"}
 {"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2025-12-26T20:53:01.504Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-22T07:26:59.081Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-22T07:26:59.779Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:31:11.130Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:31:11.131Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:31:11.133Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:31:11.133Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:31:14.633Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:31:14.633Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:31:14.634Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:31:14.634Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:31:47.964Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:31:47.964Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:31:47.965Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:31:47.965Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-22T07:34:20.372Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-22T07:34:25.457Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:34:50.156Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:34:50.156Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:34:50.157Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:34:50.157Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:14.187Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:14.187Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:14.187Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:14.188Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:15.051Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:15.051Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:15.052Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:15.052Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:15.402Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:15.402Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:15.403Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:15.403Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:16.267Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:16.267Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:16.268Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:16.268Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:19.661Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:19.661Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:19.662Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:19.662Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:19.835Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:19.836Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:19.836Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:19.836Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:35:20.001Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:35:20.001Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:35:20.001Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:35:20.001Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:46.583Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:46.583Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:46.584Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:46.584Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:46.741Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:46.741Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:46.742Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:46.742Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:46.906Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:46.906Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:46.907Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:46.907Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:47.048Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:47.049Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:47.049Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:47.050Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:47.406Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:47.406Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:47.407Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:47.407Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:47.538Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:47.538Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:47.539Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:47.539Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:37:47.705Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:37:47.705Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:37:47.705Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:37:47.705Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-22T07:50:05.488Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-22T07:50:05.971Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:52:16.057Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:52:16.058Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:52:16.061Z"}
+{"level":"warn","message":"Validation failed during user registration: \"password\" length must be at least 8 characters long","service":"identity-service","timestamp":"2026-01-22T07:52:16.064Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:52:42.596Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:52:42.596Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:52:42.596Z"}
+{"level":"warn","message":"New user registered: 6971d74adfc469fff7334ac3","service":"identity-service","timestamp":"2026-01-22T07:52:42.721Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:54:05.353Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:54:05.353Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:54:05.355Z"}
+{"level":"warn","message":"Validation failed during user registration: \"password\" length must be at least 8 characters long","service":"identity-service","timestamp":"2026-01-22T07:54:05.356Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:54:47.746Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:54:47.746Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:54:47.747Z"}
+{"level":"warn","message":"Validation failed during user registration: \"password\" length must be at least 8 characters long","service":"identity-service","timestamp":"2026-01-22T07:54:47.747Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:55:53.122Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:55:53.122Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:55:53.123Z"}
+{"level":"warn","message":"Registration attempt with existing email or username: aarohb.1507@gmail.com, aarohb1507","service":"identity-service","timestamp":"2026-01-22T07:55:53.181Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:56:30.315Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:56:30.315Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:56:30.315Z"}
+{"level":"warn","message":"New user registered: 6971d82edfc469fff7334ac9","service":"identity-service","timestamp":"2026-01-22T07:56:30.458Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:56:35.522Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:56:35.522Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:56:35.522Z"}
+{"level":"warn","message":"New user registered: 6971d833dfc469fff7334ace","service":"identity-service","timestamp":"2026-01-22T07:56:35.658Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T07:57:19.037Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:19.037Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:19.040Z"}
+{"level":"warn","message":"New user registered: 6971d85fdfc469fff7334ad3","service":"identity-service","timestamp":"2026-01-22T07:57:19.162Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:32.038Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:32.038Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:32.039Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:32.039Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:34.846Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:34.846Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:34.847Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:34.847Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:35.662Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:35.662Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:35.663Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:35.663Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:36.206Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:36.206Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:36.207Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:36.207Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:39.223Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:39.223Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:39.224Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:39.224Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:41.298Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:41.298Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:41.298Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:41.299Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:41.890Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:41.890Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:41.890Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:41.891Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:42.508Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:42.508Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:42.512Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:42.512Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:57:42.655Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:57:42.655Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:57:42.656Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:57:42.657Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:58:47.999Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:58:47.999Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:58:47.999Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T07:58:47.999Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T07:59:01.719Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T07:59:01.720Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T07:59:01.720Z"}
+{"level":"warn","message":"Refresh token not provided in logout request","service":"identity-service","timestamp":"2026-01-22T07:59:01.720Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-22T08:00:26.113Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:00:26.113Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:00:26.114Z"}
+{"level":"error","message":"Error during logging out: Cannot read properties of undefined (reading 'deleteOne')","service":"identity-service","timestamp":"2026-01-22T08:00:26.114Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:00:37.848Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:00:37.849Z"}
+{"level":"warn","message":"IP ::1 exceeded rate limit on sensitive endpoint","service":"identity-service","timestamp":"2026-01-22T08:00:37.849Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:00:45.507Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:00:45.507Z"}
+{"level":"warn","message":"IP ::1 exceeded rate limit on sensitive endpoint","service":"identity-service","timestamp":"2026-01-22T08:00:45.508Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:00:46.533Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:00:46.533Z"}
+{"level":"warn","message":"IP ::1 exceeded rate limit on sensitive endpoint","service":"identity-service","timestamp":"2026-01-22T08:00:46.533Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-22T08:02:48.942Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-22T08:02:49.449Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:04:03.493Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:04:03.493Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:04:03.497Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-22T08:05:40.212Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-22T08:05:41.550Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:09:00.291Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:09:00.291Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:09:00.292Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:10:07.693Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:10:07.694Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:10:07.695Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:10:15.106Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:10:15.107Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:10:15.108Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:10:26.080Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:10:26.080Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:10:26.081Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:10:29.085Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:10:29.086Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:10:29.086Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:10:32.588Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:10:32.588Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:10:32.588Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T08:11:25.405Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:11:25.405Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:11:25.409Z"}
+{"level":"warn","message":"New user registered: 6971dbada551b401d0d78072","service":"identity-service","timestamp":"2026-01-22T08:11:25.519Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:11:39.666Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:11:39.667Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:11:39.667Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:11:45.767Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:11:45.767Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:11:45.768Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-22T08:12:23.151Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:12:23.152Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:12:23.152Z"}
+{"level":"warn","message":"New user registered: 6971dbe7a551b401d0d7807d","service":"identity-service","timestamp":"2026-01-22T08:12:23.285Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:12:32.445Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:12:32.446Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:12:32.446Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:12:36.004Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:12:36.004Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:12:36.005Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:12:36.662Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:12:36.662Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:12:36.663Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:17:26.870Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:17:26.870Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:17:26.871Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T08:17:30.645Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T08:17:30.645Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T08:17:30.646Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T12:56:04.855Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T12:56:04.855Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T12:56:04.858Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T12:57:07.978Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T12:57:07.978Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T12:57:07.978Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T12:59:15.661Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T12:59:15.661Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T12:59:15.662Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:01:04.827Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:01:04.827Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:01:04.828Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:02:37.205Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:02:37.205Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:02:37.206Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:03:07.018Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:03:07.018Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:03:07.019Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:03:10.051Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:03:10.051Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:03:10.051Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:03:24.541Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:03:24.541Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:03:24.541Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:05:34.924Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:05:34.924Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:05:34.925Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/refresh-token","service":"identity-service","timestamp":"2026-01-22T13:07:20.601Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:07:20.601Z"}
+{"level":"info","message":"Hit refreshTokenUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:07:20.602Z"}
+{"level":"error","message":"Error during refresh token processing: Cannot read properties of undefined (reading 'findOne')","service":"identity-service","timestamp":"2026-01-22T13:07:20.602Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/refresh-token","service":"identity-service","timestamp":"2026-01-22T13:07:58.962Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:07:58.962Z"}
+{"level":"info","message":"Hit refreshTokenUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:07:58.962Z"}
+{"level":"error","message":"Error during refresh token processing: Cannot read properties of undefined (reading 'findOne')","service":"identity-service","timestamp":"2026-01-22T13:07:58.962Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/refresh-token","service":"identity-service","timestamp":"2026-01-22T13:08:20.626Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:08:20.626Z"}
+{"level":"info","message":"Hit refreshTokenUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:08:20.626Z"}
+{"level":"error","message":"Error during refresh token processing: Cannot read properties of undefined (reading 'findOne')","service":"identity-service","timestamp":"2026-01-22T13:08:20.627Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:13:02.523Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:13:02.523Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:13:02.524Z"}

@@ -17,7 +17,7 @@ const redisClient = new Redis(process.env.REDIS_URL)
 // Middleware
 app.use(helmet())
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: process.env.CLIENT_URL || 'http://localhost:3005',
     credentials: true // Allow cookies to be sent
 }))
 app.use(express.json())
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 // Rate limiter (mounted early so it protects routes)
 const rateLimiterMiddleware = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100,
+    max: 400, // Increased 4x from 100
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res) => {
