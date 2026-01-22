@@ -96,6 +96,11 @@ if (!process.env.POST_SERVICE_URL) {
         ...proxyOptions,
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             proxyReqOpts.headers['content-type'] = 'application/json'
+            // Forward cookies to post service for JWT validation
+            if (srcReq.headers.cookie) {
+                proxyReqOpts.headers['cookie'] = srcReq.headers.cookie
+            }
+            // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
             return proxyReqOpts 
         },
@@ -116,6 +121,11 @@ if (!process.env.MEDIA_SERVICE_URL) {
             if(!srcReq.headers['content-type'].startsWith('multipart/form-data')){
                 proxyReqOpts.headers['content-type'] = 'application/json'
             }
+            // Forward cookies to media service for JWT validation
+            if (srcReq.headers.cookie) {
+                proxyReqOpts.headers['cookie'] = srcReq.headers.cookie
+            }
+            // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
             return proxyReqOpts 
         },
@@ -137,6 +147,11 @@ if (!process.env.SEARCH_SERVICE_URL) {
         ...proxyOptions,
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             proxyReqOpts.headers['content-type'] = 'application/json'
+            // Forward cookies to search service for JWT validation
+            if (srcReq.headers.cookie) {
+                proxyReqOpts.headers['cookie'] = srcReq.headers.cookie
+            }
+            // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
             return proxyReqOpts 
         },

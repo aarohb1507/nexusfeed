@@ -2,19 +2,26 @@ const logger = require('../utils/logger');
 
 const authenticateUser = (req, res, next) => {
     logger.info("Authenticating user for protected route");
-    // Authentication logic here
-    const userId = req.header('x-user-id');
+    
+    // Trust the x-user-id header forwarded by API Gateway (gateway already validated JWT)
+    const userId = req.headers['x-user-id'];
+    
     if (!userId) {
-        logger.warn("Authentication failed: No user ID provided");
+        logger.warn('No x-user-id header found - API Gateway should have validated and forwarded this');
         return res.status(401).json({
             success: false,
-            message: "Unauthorized: No user ID provided"
+            message: 'Authentication required. User ID not provided by gateway.'
         });
     }
-    // In a real application, verify the user ID and fetch user details
-    req.user = { id:userId }; // Mock user object
+
+    // Attach user info to request
+    req.user = {
+        id: userId
+    };
+    logger.info('User authenticated via gateway: %s', req.user.id);
     next();
 }
+
 module.exports = {
     authenticateUser
 }

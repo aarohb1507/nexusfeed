@@ -34,6 +34,10 @@ const registerUser = async (req, res, next) => {
         user = new User({username, email, password})
         await user.save()
         logger.warn("New user registered: %s", user._id)
+        
+        // Delete any existing refresh tokens for this user (cleanup)
+        await RefreshToken.deleteMany({ user: user._id })
+        
         const { accessToken, refreshToken } = await generateTokens(user)
         
         // Set tokens in httpOnly cookies
@@ -44,7 +48,7 @@ const registerUser = async (req, res, next) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: sameSitePolicy,
-            maxAge: 15 * 60 * 1000 // 15 minutes
+            maxAge: 20 * 60 * 1000 // 20 minutes
         })
         
         res.cookie('refreshToken', refreshToken, {
@@ -108,6 +112,9 @@ const loginUser = async (req, res, next) => {
             })
         }
         //if the password matches
+        // Delete any existing refresh tokens for this user (ensure single active token)
+        await RefreshToken.deleteMany({ user: user._id })
+        
         const {accessToken, refreshToken} = await generateTokens(user)
         
         // Set tokens in httpOnly cookies
@@ -118,7 +125,7 @@ const loginUser = async (req, res, next) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: sameSitePolicy,
-            maxAge: 15 * 60 * 1000 // 15 minutes
+            maxAge: 20 * 60 * 1000 // 20 minutes
         })
         
         res.cookie('refreshToken', refreshToken, {
@@ -176,7 +183,7 @@ const refreshTokenUser = async (req, res, next) => {
             message: "Refresh token has expired"
         })
     }
-    //generate new tokens
+    //generate new ACCESS TOKEN ONLY (keep same refresh token)
     const user = await User.findById(storedToken.user)
     if (!user){
         logger.warn("User not found for refresh token: %s", refreshToken)
@@ -185,11 +192,16 @@ const refreshTokenUser = async (req, res, next) => {
             message: "User not found"
         })
     }
-    const {accessToken:newAccessToken, refreshToken: newRefreshToken} = await generateTokens(user)
-    //delete old refresh token
-    await RefreshToken.deleteOne({_id: storedToken._id})
     
-    // Set new tokens in httpOnly cookies
+    // Generate ONLY new access token, reuse the same refresh token
+    const newAccessToken = require('jsonwebtoken').sign({
+        id: user._id,
+        username: user.username,
+    }, process.env.JWT_SECRET, {expiresIn: '20m'})
+    
+    // DO NOT delete refresh token - we reuse it for the full 7 days
+    
+    // Set ONLY new access token cookie, refresh token stays the same
     // Use 'lax' for development (cross-port), 'strict' for production (same domain)
     const sameSitePolicy = process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
     
@@ -197,15 +209,10 @@ const refreshTokenUser = async (req, res, next) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: sameSitePolicy,
-        maxAge: 15 * 60 * 1000 // 15 minutes
+        maxAge: 20 * 60 * 1000 // 20 minutes
     })
     
-    res.cookie('refreshToken', newRefreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: sameSitePolicy,
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-    })
+    // DO NOT set new refresh token cookie - we reuse the existing one
     
     return res.status(200).json({
         success: true,
