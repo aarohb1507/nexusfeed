@@ -7,10 +7,10 @@ const invalidatePost = async (req, input) => {
     const cachedKey = `post:${input}`;
   await req.redisClient.del(cachedKey);
 
-  const keys = await req.redisClient.keys("posts:*");
-  if (keys.length > 0) {
-    await req.redisClient.del(keys);
-  }   
+    const keys = await req.redisClient.keys("posts:*");
+    if (keys.length > 0) {
+        await req.redisClient.del(...keys);
+    }
 }
 // Create a new post
 const createPost = async (req, res, next) => {
@@ -113,18 +113,18 @@ const getPost = async (req, res, next) => {
 
     const singlePostDetailsbyId = await Post.findById(postId);
 
-    if (!singlePostDetailsbyId) {
+        if (!singlePostDetailsbyId) {
       return res.status(404).json({
         message: "Post not found",
         success: false,
       });
     }
 
-    await req.redisClient.setex(
-      cachedPost,
-      3600,
-      JSON.stringify(singlePostDetailsbyId)
-    );
+        await req.redisClient.setex(
+            cachekey,
+            3600,
+            JSON.stringify(singlePostDetailsbyId)
+        );
 
     res.json(singlePostDetailsbyId);
     } catch (error) {
@@ -139,23 +139,34 @@ const getPost = async (req, res, next) => {
 const deletePost = async (req, res, next) => {
     logger.info("Hit deletePost endpoint");
     try {
+        const postId = req.params.id;
+        logger.info('Attempting delete for postId=%s by user=%s', postId, req.user?.id);
         const post = await Post.findOneAndDelete({
-      _id: req.params.id,
-      user: req.user.id,
-    });
+            _id: postId,
+            user: req.user.id,
+        });
 
-    if (!post) {
-      return res.status(404).json({
-        message: "Post not found",
-        success: false,
-      });
-    }
+        if (!post) {
+            logger.warn('Delete failed - post not found or not owned by user: %s', postId);
+            return res.status(404).json({
+                message: "Post not found",
+                success: false,
+            });
+        }
 
-    await invalidatePost(req, req.params.id);
-    return res.status(200).json({
-        success: true,
-        message: "Post deleted successfully"
-    });
+        // Notify other services about deletion
+        try {
+            await publishEvent('post.deleted', { postId: post._id.toString(), userId: post.user.toString() });
+        } catch (e) {
+            logger.warn('Failed to publish post.deleted event: %s', e.message);
+        }
+
+        await invalidatePost(req, postId);
+        logger.info('Post deleted: %s', postId);
+        return res.status(200).json({
+            success: true,
+            message: "Post deleted successfully"
+        });
     } catch (error) {
         logger.error("Error in deletePost: %s", error.message);
         return res.status(500).json({
