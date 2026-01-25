@@ -165,9 +165,25 @@ const deletePost = async (req, res, next) => {
     }
 }
 
+/**
+ * Get total post count (for search service sync)
+ * No authentication needed - internal service call
+ */
+const getPostCount = async (req, res) => {
+    try {
+        const count = await Post.countDocuments();
+        logger.info(`📊 Total posts count: ${count}`);
+        res.status(200).json({ success: true, count });
+    } catch (error) {
+        logger.error("Error getting post count: %s", error.message);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};
+
 module.exports = {
     createPost,
     getAllPosts,
     getPost,
-    deletePost
+    deletePost,
+    getPostCount
 }

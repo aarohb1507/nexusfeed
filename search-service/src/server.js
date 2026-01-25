@@ -18,8 +18,14 @@ const PORT = process.env.PORT || 3004;
 //connect to mongodb
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => logger.info("Connected to mongodb"))
-  .catch((e) => logger.error("Mongo connection error", e));
+  .then(() => {
+    logger.info("✅ Connected to mongodb");
+    
+    // Import and start background sync (non-blocking)
+    const { backgroundSync } = require("./utils/syncPosts");
+    backgroundSync();
+  })
+  .catch((e) => logger.error("❌ Mongo connection error", e));
 
 const redisClient = new Redis(process.env.REDIS_URL);
 
