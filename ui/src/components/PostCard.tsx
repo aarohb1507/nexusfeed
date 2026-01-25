@@ -1,5 +1,12 @@
-import { useState } from 'react';
-import { postAPI } from '@/lib/api';
+import { useState, useEffect } from 'react';
+import { postAPI, mediaAPI } from '@/lib/api';
+
+interface Media {
+  _id: string;
+  url: string;
+  originalName: string;
+  mimeType: string;
+}
 
 interface Post {
   _id: string;
@@ -17,6 +24,27 @@ interface PostCardProps {
 export default function PostCard({ post, onDelete }: PostCardProps) {
   const [deleting, setDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [mediaUrls, setMediaUrls] = useState<Media[]>([]);
+  const [loadingMedia, setLoadingMedia] = useState(false);
+
+  useEffect(() => {
+    const fetchMedia = async () => {
+      if (post.mediaIds && post.mediaIds.length > 0) {
+        setLoadingMedia(true);
+        try {
+          const response = await mediaAPI.getMediaByIds(post.mediaIds);
+          if (response.success) {
+            setMediaUrls(response.data);
+          }
+        } catch (error) {
+          console.error('Failed to fetch media:', error);
+        } finally {
+          setLoadingMedia(false);
+        }
+      }
+    };
+    fetchMedia();
+  }, [post.mediaIds]);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -87,9 +115,35 @@ export default function PostCard({ post, onDelete }: PostCardProps) {
 
       <p className="text-gray-800 whitespace-pre-wrap mb-4">{post.content}</p>
 
-      {post.mediaIds && post.mediaIds.length > 0 && (
-        <div className="text-sm text-gray-500 mb-4">
-          📎 {post.mediaIds.length} media file(s) attached
+      {/* Display Media Images */}
+      {loadingMedia && (
+        <div className="mb-4 text-sm text-gray-500">Loading media...</div>
+      )}
+      
+      {mediaUrls.length > 0 && (
+        <div className="mb-4 grid grid-cols-1 gap-2">
+          {mediaUrls.map((media) => (
+            <div key={media._id} className="relative rounded-lg overflow-hidden">
+              {media.mimeType.startsWith('image/') ? (
+                <img 
+                  src={media.url} 
+                  alt={media.originalName}
+                  className="w-full max-h-96 object-cover rounded-lg"
+                />
+              ) : (
+                <div className="p-4 bg-gray-100 rounded-lg">
+                  <a 
+                    href={media.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline flex items-center"
+                  >
+                    📎 {media.originalName}
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
 

@@ -115,10 +115,23 @@ if (!process.env.POST_SERVICE_URL) {
 if (!process.env.MEDIA_SERVICE_URL) {
     logger.warn('MEDIA_SERVICE_URL not set — skipping /v1/media proxy mount')
 } else {
-    app.use('/v1/media', validateToken, proxy(process.env.MEDIA_SERVICE_URL, {
+    // Conditional authentication for media routes
+    const mediaAuthMiddleware = (req, res, next) => {
+        // Allow /by-ids endpoint without authentication (public media viewing)
+        if (req.url.includes('/by-ids')) {
+            logger.info('Bypassing auth for media by-ids endpoint');
+            return next();
+        }
+        // All other media routes require authentication
+        return validateToken(req, res, next);
+    };
+
+    app.use('/v1/media', mediaAuthMiddleware, proxy(process.env.MEDIA_SERVICE_URL, {
         ...proxyOptions,
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
-            if(!srcReq.headers['content-type'].startsWith('multipart/form-data')){
+            // Only set content-type if not multipart (for file uploads)
+            const contentType = srcReq.headers['content-type'] || ''
+            if(!contentType.startsWith('multipart/form-data')){
                 proxyReqOpts.headers['content-type'] = 'application/json'
             }
             // Forward cookies to media service for JWT validation

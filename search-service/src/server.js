@@ -25,7 +25,10 @@ const redisClient = new Redis(process.env.REDIS_URL);
 
 //middleware
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:3005',
+  credentials: true
+}));
 app.use(express.json());
 
 app.use((req, res, next) => {

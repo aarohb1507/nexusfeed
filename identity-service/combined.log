@@ -392,3 +392,77 @@
 {"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-22T13:13:02.523Z"}
 {"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-22T13:13:02.523Z"}
 {"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-22T13:13:02.524Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-24T14:21:26.521Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-24T14:21:26.879Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-24T14:22:55.716Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:22:55.717Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:22:55.721Z"}
+{"level":"error","message":"Error during user login: Cannot read properties of undefined (reading 'deleteMany')","service":"identity-service","timestamp":"2026-01-24T14:22:55.805Z"}
+{"level":"info","message":"Recieved GET request for /api/health","service":"identity-service","timestamp":"2026-01-24T14:23:12.839Z"}
+{"level":"info","message":"request body is undefined","service":"identity-service","timestamp":"2026-01-24T14:23:12.839Z"}
+{"level":"info","message":"Recieved GET request for /api/auth/health","service":"identity-service","timestamp":"2026-01-24T14:23:12.853Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:23:12.853Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-24T14:23:39.402Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:23:39.402Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:23:39.406Z"}
+{"level":"error","message":"Error during user login: Cannot read properties of undefined (reading 'deleteMany')","service":"identity-service","timestamp":"2026-01-24T14:23:39.485Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-24T14:27:42.431Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:27:42.431Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:27:42.433Z"}
+{"level":"warn","message":"New user registered: 6974d6de297dd92854e09b8c","service":"identity-service","timestamp":"2026-01-24T14:27:42.566Z"}
+{"level":"error","message":"Error during user registration: Cannot read properties of undefined (reading 'deleteMany')","service":"identity-service","timestamp":"2026-01-24T14:27:42.566Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-24T14:28:07.098Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:28:07.099Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:28:07.100Z"}
+{"level":"warn","message":"Registration attempt with existing email or username: testuser0@gmail.com, testuser0","service":"identity-service","timestamp":"2026-01-24T14:28:07.137Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-24T14:29:27.919Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-24T14:29:28.265Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-24T14:36:24.461Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-24T14:36:24.813Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-24T14:38:29.042Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-24T14:38:29.393Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-24T14:38:53.825Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:38:53.825Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:38:53.829Z"}
+{"level":"warn","message":"New user registered: 6974d97de13c1a6899c8619f","service":"identity-service","timestamp":"2026-01-24T14:38:53.945Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-24T14:39:09.917Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:39:09.917Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:39:09.918Z"}
+{"level":"warn","message":"New user registered: 6974d98de13c1a6899c861a5","service":"identity-service","timestamp":"2026-01-24T14:39:10.022Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-24T14:39:34.874Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:39:34.874Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:39:34.875Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-24T14:52:16.624Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:52:16.624Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:52:16.626Z"}
+{"level":"warn","message":"New user registered: 6974dca0e13c1a6899c861af","service":"identity-service","timestamp":"2026-01-24T14:52:16.746Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-24T14:52:32.288Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:52:32.288Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:52:32.289Z"}
+{"level":"info","message":"User logged out successfully, refresh token invalidated: c9bc5222bc491d8de9a88bd97c5dea18fc994ae179a2e8f95bb9c6a8bd8c1facd05411d793037638","service":"identity-service","timestamp":"2026-01-24T14:52:32.319Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-24T14:52:44.794Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T14:52:44.794Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-24T14:52:44.797Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-24T15:00:15.740Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-24T15:00:16.076Z"}
+{"level":"info","message":"Recieved POST request for /api/refresh-token","service":"identity-service","timestamp":"2026-01-24T15:02:02.376Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-24T15:02:02.377Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-25T08:54:23.106Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-25T08:54:23.106Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-25T08:54:23.109Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-25T08:56:22.555Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-25T08:56:23.083Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-25T08:57:17.534Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-25T08:57:17.534Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-25T08:57:17.538Z"}
+{"level":"warn","message":"Validation failed during user registration: \"password\" length must be at least 8 characters long","service":"identity-service","timestamp":"2026-01-25T08:57:17.541Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-25T08:57:46.564Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-25T08:57:46.565Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-25T08:57:46.566Z"}
+{"level":"info","message":"User logged out successfully, refresh token invalidated: 1452e21fac852679d0f9da2a993dfaf9788cfae6c56d06fe6e367c04a20b55f54500e94b9355a452","service":"identity-service","timestamp":"2026-01-25T08:57:46.630Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-25T08:57:48.141Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-25T08:57:48.141Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-25T08:57:48.143Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-25T14:46:26.065Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-25T14:46:26.065Z"}
+{"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-25T14:46:26.066Z"}

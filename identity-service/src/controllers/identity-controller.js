@@ -3,7 +3,7 @@ const { generateTokens } = require('../utils/generateToken')
 const logger = require('../utils/Logger')
 const {validateRegistration} = require('../utils/validation')
 const {validateLogin} = require('../utils/validation')
-const {RefreshToken} = require('../models/RefreshTokens')
+const RefreshToken = require('../models/RefreshTokens')
 
 //user-registeration
 

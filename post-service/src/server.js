@@ -28,7 +28,10 @@ mongoose.connect(process.env.MONGODB_URI).then(()=>{
 // Middleware setup
 app.use(helmet())
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:3005',
+    credentials: true
+}))
 
 app.use((req, res, next)=>{
     logger.info(`Received ${req.method} request for ${req.url}`)

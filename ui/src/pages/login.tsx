@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { authAPI } from '@/lib/api';
 import Link from 'next/link';
@@ -10,7 +10,17 @@ export default function Login() {
     password: '',
   });
   const [error, setError] = useState('');
+  const [sessionExpired, setSessionExpired] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Check for session expiry message from URL
+  useEffect(() => {
+    if (router.query.session === 'expired') {
+      setSessionExpired(true);
+      // Clear the query param from URL
+      router.replace('/login', undefined, { shallow: true });
+    }
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +60,12 @@ export default function Login() {
           <h1 className="text-4xl font-bold text-gray-800 mb-2">NexusFeed</h1>
           <p className="text-gray-600">Sign in to your account</p>
         </div>
+
+        {sessionExpired && (
+          <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded mb-4">
+            <strong>Session expired.</strong> Please login again to continue.
+          </div>
+        )}
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">

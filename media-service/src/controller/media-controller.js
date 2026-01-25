@@ -75,4 +75,31 @@ const getUserMedia = async (req, res) => {
   }
 };
 
-module.exports = { uploadMedia, getUserMedia };
+const getMediaByIds = async (req, res) => {
+  try {
+    const { ids } = req.query; // Expect comma-separated IDs: ?ids=id1,id2,id3
+
+    if (!ids) {
+      return res.status(400).json({
+        success: false,
+        message: "Media IDs are required",
+      });
+    }
+
+    const mediaIds = ids.split(',').filter(id => id.trim());
+    const result = await Media.find({ _id: { $in: mediaIds } });
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    logger.error("Error fetching media by IDs: %s", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Error fetching media",
+    });
+  }
+};
+
+module.exports = { uploadMedia, getUserMedia, getMediaByIds };

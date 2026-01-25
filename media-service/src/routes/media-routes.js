@@ -3,6 +3,7 @@ const multer = require("multer");
 const {
   uploadMedia,
   getUserMedia,
+  getMediaByIds,
 } = require("../controller/media-controller");
 const { authenticateUser } = require("../middleware/authMiddleware");
 const logger = require("../utils/logger");
@@ -51,6 +52,7 @@ router.post(
   uploadMedia
 );
 
-router.get("/get",getMediaLimiter, authenticateUser, getUserMedia);
+router.get("/get", getMediaLimiter, authenticateUser, getUserMedia);
+router.get("/by-ids", getMediaLimiter, getMediaByIds);
 
 module.exports = router;

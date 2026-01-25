@@ -7,7 +7,7 @@ services:
   
   # MongoDB: Central data store for all services
   mongo:
-    image: mongo:7.0-alpine
+    image: mongo:7.0
     container_name: nexusfeed-mongo
     ports:
       - "27017:27017"

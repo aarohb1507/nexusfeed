@@ -18,7 +18,10 @@ mongoose
   .then(() => logger.info("Connected to mongodb"))
   .catch((e) => logger.error("Mongo connection error", e));
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:3005',
+  credentials: true
+}));
 app.use(helmet());
 app.use(express.json());
 

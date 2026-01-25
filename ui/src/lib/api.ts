@@ -23,6 +23,18 @@ api.interceptors.response.use(
       url: error.config?.url,
     });
     
+    // Handle session expiry globally
+    if (error.response?.status === 401) {
+      // Check if we're not already on login/register pages
+      if (typeof window !== 'undefined' && 
+          !window.location.pathname.includes('/login') && 
+          !window.location.pathname.includes('/register')) {
+        // Redirect to login with session expired message
+        window.location.href = '/login?session=expired';
+        return Promise.reject(error);
+      }
+    }
+    
     // Don't try to auto-refresh - let pages handle auth errors
     // Auto-refresh causes race conditions and cascading failures
     return Promise.reject(error);
@@ -111,6 +123,12 @@ export const mediaAPI = {
 
   getUserMedia: async () => {
     const response = await api.get('/v1/media/get');
+    return response.data;
+  },
+
+  getMediaByIds: async (ids: string[]) => {
+    if (!ids || ids.length === 0) return { success: true, data: [] };
+    const response = await api.get(`/v1/media/by-ids?ids=${ids.join(',')}`);
     return response.data;
   },
 };
