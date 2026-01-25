@@ -1,6 +1,7 @@
 const Search = require("../models/Search");
 const logger = require("../utils/logger");
 
+
 const searchPostController = async (req, res) => {
   logger.info("Search endpoint hit!");
   try {
