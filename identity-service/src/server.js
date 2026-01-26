@@ -64,7 +64,7 @@ app.use((req, res, next)=>{
 
 const rateLimiterMiddleware = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 120, // Increased 4x from 30
+    max: 360, // Increased 3x from 120 (12x total from original 30)
     standardHeaders: true,
     legacyHeaders: false,   
     handler : (req, res)=>{

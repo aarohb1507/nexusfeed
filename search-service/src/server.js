@@ -66,7 +66,7 @@ app.use(globalRateLimiter);
 //rate limiter for search endpoint
 const searchRateLimiter = rateLimit({
     windowMs: 1 * 60 * 1000,
-    max: 30,
+    max: 300, // Increased 3x from 100 (10x total from original 30)
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res) => {

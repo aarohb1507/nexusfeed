@@ -8,7 +8,7 @@ const redisClient = new Redis(process.env.REDIS_URL);
 
 const globalRateLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 800, // Increased 4x from 200
+    max: 2400, // Increased 3x from 800 (12x total from original 200)
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res) => {
@@ -25,7 +25,7 @@ const globalRateLimiter = rateLimit({
 
 const uploadMediaLimiter = rateLimit({
     windowMs: 60 * 1000, // 1 minute
-    max: 200, // Increased 4x from 50
+    max: 600, // Increased 3x from 200 (12x total from original 50)
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res) => {
@@ -42,7 +42,7 @@ const uploadMediaLimiter = rateLimit({
 
 const getMediaLimiter = rateLimit({
     windowMs: 60 * 1000, // 1 minute
-    max: 80, // Increased 4x from 20
+    max: 1000, // Increased to 1000 for read-only by-ids endpoint (concurrent UI requests)
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res) => {

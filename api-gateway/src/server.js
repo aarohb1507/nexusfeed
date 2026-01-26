@@ -34,9 +34,13 @@ app.use((req, res, next) => {
 // Rate limiter (mounted early so it protects routes)
 const rateLimiterMiddleware = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 400, // Increased 4x from 100
+    max: 1200, // Increased 3x from 400 (12x total from original 100)
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => {
+        // Skip rate limiting for search and media endpoints - they have their own rate limiters
+        return req.path.startsWith('/v1/search') || req.path.startsWith('/v1/media')
+    },
     handler: (req, res) => {
         logger.warn('IP %s exceeded rate limit on sensitive endpoint', req.ip)
        return res.status(429).json({

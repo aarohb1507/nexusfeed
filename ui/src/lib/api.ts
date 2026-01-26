@@ -128,15 +128,96 @@ export const mediaAPI = {
 
   getMediaByIds: async (ids: string[]) => {
     if (!ids || ids.length === 0) return { success: true, data: [] };
-    const response = await api.get(`/v1/media/by-ids?ids=${ids.join(',')}`);
-    return response.data;
+
+    // Simple in-memory cache + batching to dedupe simultaneous media requests
+    const uniqueIds = Array.from(new Set(ids));
+
+    if (!(globalThis as any).__mediaBatchHelpers) {
+      (globalThis as any).__mediaBatchHelpers = {
+        cache: new Map<string, any>(),
+        pending: new Map<string, any>(),
+        batch: new Set<string>(),
+        timer: null as any,
+      };
+    }
+
+    const helpers = (globalThis as any).__mediaBatchHelpers;
+
+    const missingIds: string[] = [];
+    const fromCache: Record<string, any> = {};
+
+    for (const id of uniqueIds) {
+      if (helpers.cache.has(id)) {
+        fromCache[id] = helpers.cache.get(id);
+      } else {
+        missingIds.push(id);
+      }
+    }
+
+    if (missingIds.length === 0) {
+      const ordered = ids.map(i => fromCache[i]).filter(Boolean);
+      return { success: true, data: ordered };
+    }
+
+    const promises: Array<Promise<any>> = [];
+    for (const id of missingIds) {
+      if (!helpers.pending.has(id)) {
+        helpers.batch.add(id);
+        let resolveFn: any, rejectFn: any;
+        const p = new Promise((resolve, reject) => {
+          resolveFn = resolve;
+          rejectFn = reject;
+        });
+        helpers.pending.set(id, { promise: p, resolve: resolveFn, reject: rejectFn });
+      }
+      promises.push(helpers.pending.get(id).promise);
+    }
+
+    if (!helpers.timer) {
+      helpers.timer = setTimeout(async () => {
+        const idsToFetch = Array.from(helpers.batch);
+        helpers.batch.clear();
+        helpers.timer = null;
+
+        try {
+          const resp = await api.get(`/v1/media/by-ids?ids=${idsToFetch.join(',')}`);
+          const items: any[] = resp.data?.data || resp.data || [];
+          const map = new Map(items.map((it: any) => [String(it._id || it.id), it]));
+
+          for (const id of idsToFetch) {
+            const val = map.get(id) || null;
+            if (val) helpers.cache.set(id, val);
+            const pending = helpers.pending.get(id);
+            if (pending) {
+              pending.resolve(val);
+              helpers.pending.delete(id);
+            }
+          }
+        } catch (err) {
+          for (const id of idsToFetch) {
+            const pending = helpers.pending.get(id);
+            if (pending) {
+              pending.reject(err);
+              helpers.pending.delete(id);
+            }
+          }
+        }
+      }, 0);
+    }
+
+    try {
+      await Promise.all(promises);
+      const ordered = ids.map(i => helpers.cache.get(i)).filter(Boolean);
+      return { success: true, data: ordered };
+    } catch (err) {
+      throw err;
+    }
   },
 };
-
 // Search Service APIs
 export const searchAPI = {
   searchPosts: async (query: string, page: number = 1, limit: number = 10) => {
-    const response = await api.get(`/v1/search/posts?query=${encodeURIComponent(query)}&page=${page}&limit=${limit}`);
+    const response = await api.get(`/v1/search/posts?q=${encodeURIComponent(query)}&page=${page}&limit=${limit}`);
     return response.data;
   },
 };

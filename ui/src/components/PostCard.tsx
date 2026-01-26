@@ -27,6 +27,16 @@ export default function PostCard({ post, onDelete }: PostCardProps) {
   const [mediaUrls, setMediaUrls] = useState<Media[]>([]);
   const [loadingMedia, setLoadingMedia] = useState(false);
 
+  // Safely derive a string userId from `post.user` which may be undefined,
+  // a string, or an object returned by some endpoints (populated user).
+  const userId: string = (() => {
+    const u: any = post.user as any;
+    if (!u) return 'unknown';
+    if (typeof u === 'string') return u;
+    if (typeof u === 'object') return u._id || u.id || String(u) || 'unknown';
+    return String(u);
+  })();
+
   useEffect(() => {
     const fetchMedia = async () => {
       if (post.mediaIds && post.mediaIds.length > 0) {
@@ -60,8 +70,9 @@ export default function PostCard({ post, onDelete }: PostCardProps) {
         alert('Session expired or unauthorized. Please login again.');
         window.location.href = '/login';
       } else if (status === 404) {
-        alert('Post not found. It may have been already deleted.');
-        onDelete(post._id); // Remove from UI anyway
+        // Don't remove from UI automatically on 404 — it may indicate a permission issue
+        alert('Post not found or you are not authorized to delete it. Refresh the feed to sync.');
+        // Optionally trigger a refresh in parent by not calling onDelete here
       } else if (status === 429) {
         alert('Too many requests. Please wait a moment.');
       } else if (status >= 500) {
@@ -95,10 +106,10 @@ export default function PostCard({ post, onDelete }: PostCardProps) {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-            {post.user.substring(0, 2).toUpperCase()}
+            {userId.substring(0, 2).toUpperCase()}
           </div>
           <div>
-            <p className="font-medium text-gray-900">User {post.user.substring(0, 8)}</p>
+            <p className="font-medium text-gray-900">User {userId.substring(0, 8)}</p>
             <p className="text-sm text-gray-500">{formatDate(post.createdAt)}</p>
           </div>
         </div>
