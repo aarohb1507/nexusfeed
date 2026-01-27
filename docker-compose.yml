@@ -77,16 +77,13 @@ services:
     container_name: nexusfeed-identity-service
     ports:
       - "3001:3001"
+    env_file:
+      - ./identity-service/.env
     environment:
-      NODE_ENV: development
-      PORT: 3001
+      # Override with docker-compose specific values
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
       REDIS_URL: redis://redis:6379
       CLIENT_URL: http://localhost:3005
-      JWT_SECRET: your-secret-key-change-in-production
-      JWT_REFRESH_SECRET: your-refresh-secret-key-change-in-production
-      JWT_EXPIRY: 15m
-      JWT_REFRESH_EXPIRY: 7d
     depends_on:
       mongo:
         condition: service_healthy
@@ -110,16 +107,16 @@ services:
     container_name: nexusfeed-post-service
     ports:
       - "3002:3002"
+    env_file:
+      - ./post-service/.env
     environment:
-      NODE_ENV: development
-      PORT: 3002
+      # Override with docker-compose specific values
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
       REDIS_URL: redis://redis:6379
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       API_GATEWAY_URL: http://api-gateway:3000
       IDENTITY_SERVICE_URL: http://identity-service:3001
-      CACHE_TTL_POSTS: 300
-      CACHE_TTL_POST: 3600
+      CLIENT_URL: http://localhost:3005
     depends_on:
       mongo:
         condition: service_healthy
@@ -145,16 +142,16 @@ services:
     container_name: nexusfeed-media-service
     ports:
       - "3003:3003"
+    env_file:
+      - ./media-service/.env
     environment:
-      NODE_ENV: development
-      PORT: 3003
+      # Override with docker-compose specific values
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
+      REDIS_URL: redis://redis:6379
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
-      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME:-test}
-      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY:-test}
-      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET:-test}
       API_GATEWAY_URL: http://api-gateway:3000
       IDENTITY_SERVICE_URL: http://identity-service:3001
+      CLIENT_URL: http://localhost:3005
     depends_on:
       mongo:
         condition: service_healthy
@@ -178,15 +175,17 @@ services:
     container_name: nexusfeed-search-service
     ports:
       - "3004:3004"
+    env_file:
+      - ./search-service/.env
     environment:
-      NODE_ENV: development
-      PORT: 3004
+      # Override with docker-compose specific values
       MONGODB_URI: mongodb://root:rootpassword@mongo:27017/nexusfeed?authSource=admin
       REDIS_URL: redis://redis:6379
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       API_GATEWAY_URL: http://api-gateway:3000
       IDENTITY_SERVICE_URL: http://identity-service:3001
-      CACHE_TTL_SEARCH: 300
+      POST_SERVICE_URL: http://post-service:3002
+      CLIENT_URL: http://localhost:3005
     depends_on:
       mongo:
         condition: service_healthy
@@ -213,18 +212,16 @@ services:
     container_name: nexusfeed-api-gateway
     ports:
       - "3000:3000"
+    env_file:
+      - ./api-gateway/.env
     environment:
-      NODE_ENV: development
-      PORT: 3000
+      # Override with docker-compose specific values
       REDIS_URL: redis://redis:6379
       IDENTITY_SERVICE_URL: http://identity-service:3001
       POST_SERVICE_URL: http://post-service:3002
       MEDIA_SERVICE_URL: http://media-service:3003
       SEARCH_SERVICE_URL: http://search-service:3004
-      JWT_SECRET: your-secret-key-change-in-production
       CLIENT_URL: http://localhost:3005
-      RATE_LIMIT_WINDOW_MS: 900000
-      RATE_LIMIT_MAX_REQUESTS: 100
     depends_on:
       redis:
         condition: service_healthy
@@ -251,6 +248,8 @@ services:
     build:
       context: .
       dockerfile: ui/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3000
     container_name: nexusfeed-ui
     ports:
       - "3005:3005"
@@ -271,9 +270,6 @@ services:
 volumes:
   mongo-data:
     driver: local
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
   redis-data:
     driver: local
   rabbitmq-data:

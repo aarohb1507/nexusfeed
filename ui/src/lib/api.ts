@@ -185,7 +185,7 @@ export const mediaAPI = {
           const map = new Map(items.map((it: any) => [String(it._id || it.id), it]));
 
           for (const id of idsToFetch) {
-            const val = map.get(id) || null;
+            const val = map.get(id as string) || null;
             if (val) helpers.cache.set(id, val);
             const pending = helpers.pending.get(id);
             if (pending) {
