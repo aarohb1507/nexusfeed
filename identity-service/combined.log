@@ -499,3 +499,13 @@
 {"level":"info","message":"Recieved POST request for /api/auth/login","service":"identity-service","timestamp":"2026-01-26T06:34:49.862Z"}
 {"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-26T06:34:49.862Z"}
 {"level":"info","message":"Hit loginUser endpoint","service":"identity-service","timestamp":"2026-01-26T06:34:49.863Z"}
+{"level":"info","message":"Identity Service running on port 3001","service":"identity-service","timestamp":"2026-01-31T21:08:34.985Z"}
+{"level":"info","message":"Connected to MongoDB","service":"identity-service","timestamp":"2026-01-31T21:08:35.582Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/register","service":"identity-service","timestamp":"2026-01-31T21:11:13.842Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-31T21:11:13.842Z"}
+{"level":"info","message":"Hit registerUser endpoint","service":"identity-service","timestamp":"2026-01-31T21:11:13.846Z"}
+{"level":"warn","message":"New user registered: 697e6ff164297c2b65ef4613","service":"identity-service","timestamp":"2026-01-31T21:11:13.999Z"}
+{"level":"info","message":"Recieved POST request for /api/auth/logout","service":"identity-service","timestamp":"2026-01-31T21:13:26.814Z"}
+{"level":"info","message":"request body is [object Object]","service":"identity-service","timestamp":"2026-01-31T21:13:26.815Z"}
+{"level":"info","message":"Hit logoutUser endpoint","service":"identity-service","timestamp":"2026-01-31T21:13:26.817Z"}
+{"level":"info","message":"User logged out successfully, refresh token invalidated: d7634c015b239631bf710e77e3f571ab6ab0cace24aad5c435287b29798cc78516c8cc5e9e707059","service":"identity-service","timestamp":"2026-01-31T21:13:26.878Z"}
