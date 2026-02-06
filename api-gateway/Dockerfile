@@ -3,9 +3,9 @@
 FROM node:18-alpine AS builder
 
 WORKDIR /app
-COPY api-gateway/package*.json ./
+COPY package*.json ./
 RUN npm ci
-COPY api-gateway/ .
+COPY . .
 
 FROM node:18-alpine
 
@@ -14,7 +14,7 @@ RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
-COPY --chown=nodejs:nodejs api-gateway/ .
+COPY --chown=nodejs:nodejs . .
 
 USER nodejs
 EXPOSE 3000
