@@ -22,6 +22,9 @@ pnpm-debug.log*
 .env
 .env.*
 
+# Deployment credentials (NEVER commit)
+.deployment-credentials.md
+
 # Logs
 *.log
 logs/
