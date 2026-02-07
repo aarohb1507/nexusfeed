@@ -2,14 +2,14 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 const Redis = require('ioredis')
-const logger = require('./utils/logger')
+const logger = require('./utils/Logger')
 const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const { rateLimit } = require('express-rate-limit')
 const { RedisStore } = require('rate-limit-redis')
 const proxy = require('express-http-proxy')
 const errorHandler = require('./middleware/errorHandler')
-const {  validateToken } = require('./middleware/authMiddleware')
+const { validateToken } = require('./middleware/authMiddleware')
 const app = express()
 const PORT = process.env.PORT || 3000
 const redisClient = new Redis(process.env.REDIS_URL)
@@ -43,7 +43,7 @@ const rateLimiterMiddleware = rateLimit({
     },
     handler: (req, res) => {
         logger.warn('IP %s exceeded rate limit on sensitive endpoint', req.ip)
-       return res.status(429).json({
+        return res.status(429).json({
             success: false,
             message: 'Too Many Requests on sensitive endpoint'
         })
@@ -106,12 +106,13 @@ if (!process.env.POST_SERVICE_URL) {
             }
             // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
-            return proxyReqOpts 
+            return proxyReqOpts
         },
         userResDecorator: (proxyRes, proxyResData, userReq) => {
             logger.info('Post-service responded %d for %s', proxyRes.statusCode, userReq.originalUrl)
             return proxyResData
-        }})
+        }
+    })
     )
 }
 
@@ -135,7 +136,7 @@ if (!process.env.MEDIA_SERVICE_URL) {
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             // Only set content-type if not multipart (for file uploads)
             const contentType = srcReq.headers['content-type'] || ''
-            if(!contentType.startsWith('multipart/form-data')){
+            if (!contentType.startsWith('multipart/form-data')) {
                 proxyReqOpts.headers['content-type'] = 'application/json'
             }
             // Forward cookies to media service for JWT validation
@@ -144,7 +145,7 @@ if (!process.env.MEDIA_SERVICE_URL) {
             }
             // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
-            return proxyReqOpts 
+            return proxyReqOpts
         },
         userResDecorator: (proxyRes, proxyResData, userReq) => {
             logger.info('Media-service responded %d for %s', proxyRes.statusCode, userReq.originalUrl)
@@ -159,8 +160,8 @@ if (!process.env.MEDIA_SERVICE_URL) {
 //mount /v1/search proxy only if search service URL is set
 if (!process.env.SEARCH_SERVICE_URL) {
     logger.warn('SEARCH_SERVICE_URL not set — skipping /v1/search proxy mount')
-}else{
-    app.use('/v1/search', validateToken, proxy(process.env.SEARCH_SERVICE_URL, {   
+} else {
+    app.use('/v1/search', validateToken, proxy(process.env.SEARCH_SERVICE_URL, {
         ...proxyOptions,
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             proxyReqOpts.headers['content-type'] = 'application/json'
@@ -170,13 +171,14 @@ if (!process.env.SEARCH_SERVICE_URL) {
             }
             // Also forward user ID for convenience (after gateway validates)
             proxyReqOpts.headers['x-user-id'] = srcReq.user?.id || srcReq.user?._id || ''
-            return proxyReqOpts 
+            return proxyReqOpts
         },
         userResDecorator: (proxyRes, proxyResData, userReq) => {
             logger.info('Search-service responded %d for %s', proxyRes.statusCode, userReq.originalUrl)
             return proxyResData
-        }})
-    ) 
+        }
+    })
+    )
 }
 
 // Global error handler
