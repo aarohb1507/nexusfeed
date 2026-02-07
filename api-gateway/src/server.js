@@ -57,6 +57,7 @@ app.use(rateLimiterMiddleware)
 // Proxy options
 const proxyOptions = {
     proxyReqPathResolver: (req) => req.originalUrl.replace(/^\/v1/, '/api'),
+    timeout: 60000, // 60 seconds - handles Render free tier cold starts
     proxyErrorHandler: (err, res) => {
         logger.error('Error while proxying request: %o', err)
         return res.status(500).json({
