@@ -1,6 +1,6 @@
 const logger = require('../utils/Logger')
 const jwt = require('jsonwebtoken')
-const http = require('http')
+const https = require('https') // Changed from http to https for production
 
 const validateToken = async (req, res, next) => {
     // Extract token from cookies
@@ -27,7 +27,7 @@ const validateToken = async (req, res, next) => {
 
                 const options = {
                     hostname: identityUrl.hostname,
-                    port: identityUrl.port || 80,
+                    port: identityUrl.port || 443, // HTTPS port for production
                     path: '/api/refresh-token',
                     method: 'POST',
                     headers: {
@@ -37,7 +37,7 @@ const validateToken = async (req, res, next) => {
                     }
                 }
 
-                const refreshRequest = http.request(options, (refreshRes) => {
+                const refreshRequest = https.request(options, (refreshRes) => {
                     let data = ''
 
                     refreshRes.on('data', (chunk) => {
