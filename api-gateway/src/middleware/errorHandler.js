@@ -1,3 +1,4 @@
+// Fixed logger import case - v2
 const logger = require('../utils/Logger')
 const errorHandler = (err, req, res, next) => {
     logger.error(err.stack)
