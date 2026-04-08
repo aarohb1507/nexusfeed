@@ -7,7 +7,7 @@ require('dotenv').config()
 const errorHandler = require('./middleware/errorHandler')
 const postRoutes = require('./routes/post-routes')
 const {globalRateLimiter} = require('./middleware/rateLimiters')
-const Redis = require('ioredis')
+const RedisClient = require('ioredis')
 const { connectToRabbitMQ } = require('./utils/rabbitmq')
 
 // Initialize express app
