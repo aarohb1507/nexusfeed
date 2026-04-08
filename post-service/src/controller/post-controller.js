@@ -102,37 +102,38 @@ const getAllPosts = async (req, res, next) => {
 
 const getPost = async (req, res, next) => {
     logger.info("Hit getPost endpoint");
+    
     try {
         const postId = req.params.id;
-    const cachekey = `post:${postId}`;
-    const cachedPost = await req.redisClient.get(cachekey);
+        const cachekey = `post:${postId}`;
+        const cachedPost = await req.redisClient.get(cachekey);
 
-    if (cachedPost) {
-      return res.json(JSON.parse(cachedPost));
-    }
+        if (cachedPost) {
+        return res.json(JSON.parse(cachedPost));
+        }
 
-    const singlePostDetailsbyId = await Post.findById(postId);
+        const singlePostDetailsbyId = await Post.findById(postId);
 
-        if (!singlePostDetailsbyId) {
-      return res.status(404).json({
-        message: "Post not found",
-        success: false,
-      });
-    }
-
-        await req.redisClient.setex(
-            cachekey,
-            3600,
-            JSON.stringify(singlePostDetailsbyId)
-        );
-
-    res.json(singlePostDetailsbyId);
-    } catch (error) {
-        logger.error("Error in getPost: %s", error.message);
-        return res.status(500).json({
+            if (!singlePostDetailsbyId) {
+        return res.status(404).json({
+            message: "Post not found",
             success: false,
-            message: "Internal Server Error"
         });
+        }
+
+            await req.redisClient.setex(
+                cachekey,
+                3600,
+                JSON.stringify(singlePostDetailsbyId)
+            );
+
+        res.json(singlePostDetailsbyId);
+        } catch (error) {
+            logger.error("Error in getPost: %s", error.message);
+            return res.status(500).json({
+                success: false,
+                message: "Internal Server Error"
+            });
     }
 }
 
